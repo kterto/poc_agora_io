@@ -1,7 +1,6 @@
 import 'dart:io';
-
 import 'package:convenience_types/types/result.dart';
-import 'package:flutter_base/src/shared/data/repositories_impl/api_repository.dart';
+import 'package:poc_agora_io/src/shared/data/repositories_impl/api_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockApiRepository extends Mock implements ApiRepository {}

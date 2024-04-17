@@ -1,6 +1,6 @@
 import 'package:convenience_types/types/result.dart';
-import 'package:flutter_base/src/shared/data/miscelaneous/storage_keys.dart';
-import 'package:flutter_base/src/shared/domain/repositories/local_storage_repository.dart';
+import 'package:poc_agora_io/src/shared/data/miscelaneous/storage_keys.dart';
+import 'package:poc_agora_io/src/shared/domain/repositories/local_storage_repository.dart';
 import 'package:mocktail/mocktail.dart';
 
 class MockLocalStorageRepository extends Mock

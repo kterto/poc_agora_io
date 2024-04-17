@@ -1,14 +1,13 @@
 import 'dart:io';
-
 import 'package:convenience_types/convenience_types.dart';
 import 'package:convenience_types/util/seed_test_state_mixin.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_base/src/sample/domain/forms/sign_in_form.dart';
-import 'package:flutter_base/src/shared/data/miscelaneous/storage_keys.dart';
-import 'package:flutter_base/src/shared/domain/repositories/local_storage_repository.dart';
-import 'package:flutter_base/src/shared/utils/api_messages/api_messages_constants.dart';
+import 'package:poc_agora_io/src/sample/domain/forms/sign_in_form.dart';
+import 'package:poc_agora_io/src/shared/data/miscelaneous/storage_keys.dart';
+import 'package:poc_agora_io/src/shared/domain/repositories/local_storage_repository.dart';
+import 'package:poc_agora_io/src/shared/utils/api_messages/api_messages_constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:flutter_base/src/shared/domain/models/api_state_model.dart';
+import 'package:poc_agora_io/src/shared/domain/models/api_state_model.dart';
 
 class ApiRepository extends StateNotifier<ApiState> with SeedTestStateMixin {
   ApiRepository({
@@ -33,7 +32,6 @@ class ApiRepository extends StateNotifier<ApiState> with SeedTestStateMixin {
       HttpError error, DioException exception, StackTrace stackTrace) async {
     if (error is HttpUnauthorizedError) {
       await _localStorageRepository.delete(key: StorageKey.authToken);
-
       state = state.maybeMap(
         orElse: () => state,
         authenticated: (_) => const SignedOut(),

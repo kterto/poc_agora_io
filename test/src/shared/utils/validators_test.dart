@@ -1,5 +1,5 @@
 import 'package:convenience_types/util/form_utils.dart';
-import 'package:flutter_base/src/shared/utils/validators.dart';
+import 'package:poc_agora_io/src/shared/utils/validators.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
@@ -16,21 +16,17 @@ void main() {
   const String atLeast1SpecialCharacter = '@';
   const String validPassword = 'test@123';
   const String anotherPassword = 'password';
-
   List<String> validate<T>({
     required List<String? Function(T)> validators,
     required T value,
   }) {
     List<String> errorMsgs = [];
-
     for (var validator in validators) {
       String? errorMsg = validator(value);
-
       if (errorMsg != null) {
         errorMsgs.add(errorMsg);
       }
     }
-
     return errorMsgs;
   }
 
@@ -40,15 +36,12 @@ void main() {
     required T valueConfirmation,
   }) {
     List<String> errorMsgs = [];
-
     for (var validator in validators) {
       String? errorMsg = validator(value, valueConfirmation);
-
       if (errorMsg != null) {
         errorMsgs.add(errorMsg);
       }
     }
-
     return errorMsgs;
   }
 
@@ -62,11 +55,9 @@ void main() {
             validators: Validators.required,
             value: testEmptyString,
           );
-
           expect(errorMsgs, [GENERIC_MANDATORY_FIELD_MSG]);
         },
       );
-
       test(
         'It should return [] if inputedString.isNotEmpty',
         () {
@@ -74,13 +65,11 @@ void main() {
             validators: Validators.required,
             value: testString,
           );
-
           expect(errorMsgs, []);
         },
       );
     },
   );
-
   group(
     'Valiators.requiredDynamic',
     () {
@@ -91,11 +80,9 @@ void main() {
             validators: Validators.requiredDynamic,
             value: null,
           );
-
           expect(errorMsgs, [GENERIC_MANDATORY_FIELD_MSG]);
         },
       );
-
       test(
         'It should return [GENERIC_MANDATORY_FIELD_MSG] if inputValue is String, and inputValue.isEmpty',
         () {
@@ -103,11 +90,9 @@ void main() {
             validators: Validators.requiredDynamic,
             value: testEmptyString,
           );
-
           expect(errorMsgs, [GENERIC_MANDATORY_FIELD_MSG]);
         },
       );
-
       test(
         'It should return [] if inputValue is String, and inputValue.isNotEmpty',
         () {
@@ -115,11 +100,9 @@ void main() {
             validators: Validators.required,
             value: testString,
           );
-
           expect(errorMsgs, []);
         },
       );
-
       test(
         'It should return [] if inputValue != null',
         () {
@@ -127,13 +110,11 @@ void main() {
             validators: Validators.requiredDynamic,
             value: 123,
           );
-
           expect(errorMsgs, []);
         },
       );
     },
   );
-
   group(
     'Validators.greaterThanZero',
     () {
@@ -144,11 +125,9 @@ void main() {
             validators: Validators.greaterThanZero,
             value: testNegative,
           );
-
           expect(errorMsgs, [SHOULD_BE_GREATER_THAN_ZERO_MSG]);
         },
       );
-
       test(
         'It should return SHOULD_BE_GREATER_THAN_ZERO_MSG, if inputvalue == 0',
         () {
@@ -156,11 +135,9 @@ void main() {
             validators: Validators.greaterThanZero,
             value: testZero,
           );
-
           expect(errorMsgs, [SHOULD_BE_GREATER_THAN_ZERO_MSG]);
         },
       );
-
       test(
         'It should return [], if inputvalue > 0',
         () {
@@ -168,13 +145,11 @@ void main() {
             validators: Validators.greaterThanZero,
             value: testPositive,
           );
-
           expect(errorMsgs, []);
         },
       );
     },
   );
-
   group(
     'Validator.email',
     () {
@@ -188,7 +163,6 @@ void main() {
           expect(errorMsgs, [GENERIC_MANDATORY_FIELD_MSG, INVALID_EMAIL_MSG]);
         },
       );
-
       test(
         'It should return [INVALID_EMAIL_MSG] if inputedEmail.isNotEmpty, but it has no match with EMAIL_REGEX',
         () {
@@ -199,7 +173,6 @@ void main() {
           expect(errorMsgs, [INVALID_EMAIL_MSG]);
         },
       );
-
       test(
         'It should return [] if inputedEmail.isNotEmpty, but it has match with EMAIL_REGEX',
         () {
@@ -212,7 +185,6 @@ void main() {
       );
     },
   );
-
   group(
     'Validators.password',
     () {
@@ -232,7 +204,6 @@ void main() {
           ]);
         },
       );
-
       test(
         'It should return [PasswordRequirementsEnum.atLeastOneNumber.toString(), PasswordRequirementsEnum.atLeastOneSpecialCharacter.toString(), ] if inputtedPassword.isNotEmpty & inputtedPassword.length >= 8',
         () {
@@ -246,7 +217,6 @@ void main() {
           ]);
         },
       );
-
       test(
         'It should return [PasswordRequirementsEnum.atLeastEightCharacters.toString(), PasswordRequirementsEnum.atLeastOneLetter.toString(), PasswordRequirementsEnum.atLeastOneSpecialCharacter.toString(),] if inputtedPassword.isNotEmpty ',
         () {
@@ -261,7 +231,6 @@ void main() {
           ]);
         },
       );
-
       test(
         'It should return [PasswordRequirementsEnum.atLeastEightCharacters.toString(), PasswordRequirementsEnum.atLeastOneNumber.toString(), PasswordRequirementsEnum.atLeastOneSpecialCharacter.toString(),] if inputtedPassword.isNotEmpty ',
         () {
@@ -276,7 +245,6 @@ void main() {
           ]);
         },
       );
-
       test(
         'It should return [PasswordRequirementsEnum.atLeastEightCharacters.toString(), PasswordRequirementsEnum.atLeastOneNumber.toString(), PasswordRequirementsEnum.atLeastOneLetter.toString(),] if inputtedPassword.isNotEmpty ',
         () {
@@ -291,7 +259,6 @@ void main() {
           ]);
         },
       );
-
       test(
         'It should return [] if inputtedPassword.isNotEmpty, inputtedPassword.length >=8 && inputtedPassword has match with AT_LEAST_ONE_NUMBER_REGEX, AT_LEAST_ONE_LETTER_REGEX and AT_LEAST_ONE_SPECIAL_CHARACTER_REGEX',
         () {
@@ -304,7 +271,6 @@ void main() {
       );
     },
   );
-
   group(
     'mapPasswordValidationToRequirementsSet',
     () {
@@ -317,7 +283,6 @@ void main() {
           );
         },
       );
-
       test(
         'it should return a set containing PasswordRequirementsEnum.atLeastEightCharacters and PasswordRequirementsEnum.atLeastOneLetter if inputValue.isNotEmpty, inputValue.length>=8, and inputValue has match only with AT_LEAST_ONE_LETTER_REGEX',
         () {
@@ -331,7 +296,6 @@ void main() {
           );
         },
       );
-
       test(
         'it should return a set containing PasswordRequirementsEnum.atLeastOneNumber if inputValue.isNotEmpty, and inputValue has match only with AT_LEAST_ONE_NUMBER_REGEX',
         () {
@@ -343,7 +307,6 @@ void main() {
           );
         },
       );
-
       test(
         'it should return a set containing PasswordRequirementsEnum.atLeastOneLetter if inputValue.isNotEmpty, and inputValue has match only with AT_LEAST_ONE_LETTER_REGEX',
         () {
@@ -355,7 +318,6 @@ void main() {
           );
         },
       );
-
       test(
         'it should return a set containing PasswordRequirementsEnum.atLeastOneSpecialCharacter if inputValue.isNotEmpty, and inputValue has match only with AT_LEAST_ONE_SPECIAL_CHARACTER_REGEX',
         () {
@@ -368,7 +330,6 @@ void main() {
           );
         },
       );
-
       test(
         'it should return a set containing PasswordRequirementsEnum.atLeastOneSpecialCharacter, PasswordRequirementsEnum.atLeastOneNumber, PasswordRequirementsEnum.atLeastOneLetter, PasswordRequirementsEnum.atLeastOneSpecialCharacter, if inputValue.isNotEmpty, inputValue.length >= 8 and inputValue has match with AT_LEAST_ONE_NUMBER_REGEX, AT_LEAST_ONE_LETTER_REGEX and AT_LEAST_ONE_SPECIAL_CHARACTER_REGEX',
         () {
@@ -385,7 +346,6 @@ void main() {
       );
     },
   );
-
   group(
     'Validators.passwordIsEqual',
     () {
@@ -397,13 +357,11 @@ void main() {
             value: testEmptyString,
             valueConfirmation: testEmptyString,
           );
-
           expect(errorMsgs, [
             GENERIC_MANDATORY_FIELD_MSG,
           ]);
         },
       );
-
       test(
         'It should return [GENERIC_MANDATORY_FIELD_MSG, PASSWORDS_MUST_BE_THE_SAME_MSG], if val.isEmpty, and valConfirmation.isNotEmpty',
         () {
@@ -412,14 +370,12 @@ void main() {
             value: testEmptyString,
             valueConfirmation: testString,
           );
-
           expect(errorMsgs, [
             GENERIC_MANDATORY_FIELD_MSG,
             PASSWORDS_MUST_BE_THE_SAME_MSG,
           ]);
         },
       );
-
       test(
         'It should return [GENERIC_MANDATORY_FIELD_MSG, PASSWORDS_MUST_BE_THE_SAME_MSG], if val.isNotEmpty, and valConfirmation.isEmpty',
         () {
@@ -428,14 +384,12 @@ void main() {
             value: testString,
             valueConfirmation: testEmptyString,
           );
-
           expect(errorMsgs, [
             GENERIC_MANDATORY_FIELD_MSG,
             PASSWORDS_MUST_BE_THE_SAME_MSG,
           ]);
         },
       );
-
       test(
         'It should return [PASSWORDS_MUST_BE_THE_SAME_MSG], if val.isNotEmpty, valConfirmation.isNotEmpty and val != valConfirmation',
         () {
@@ -444,11 +398,9 @@ void main() {
             value: validPassword,
             valueConfirmation: anotherPassword,
           );
-
           expect(errorMsgs, [PASSWORDS_MUST_BE_THE_SAME_MSG]);
         },
       );
-
       test(
         'It should return [], if val.isNotEmpty, valConfirmation.isNotEmpty and val == valConfirmation',
         () {
@@ -457,13 +409,11 @@ void main() {
             value: validPassword,
             valueConfirmation: validPassword,
           );
-
           expect(errorMsgs, []);
         },
       );
     },
   );
-
   group(
     'Validators.genIsEqual',
     () {
@@ -472,45 +422,36 @@ void main() {
         () {
           List<String? Function(String)> isEqual =
               Validators.genIsEqual(testString);
-
           List<String> errorMsgs =
               validate(validators: isEqual, value: testEmptyString);
-
           expect(errorMsgs, [
             GENERIC_MANDATORY_FIELD_MSG,
             PASSWORDS_MUST_BE_THE_SAME_MSG,
           ]);
         },
       );
-
       test(
         'It should return [ PASSWORDS_MUST_BE_THE_SAME_MSG], if valConfirmation.isNotEmpty, but inputtedValue != testString, using Validators.genIsEqual(testString)',
         () {
           List<String? Function(String)> isEqual =
               Validators.genIsEqual(testString);
-
           List<String> errorMsgs =
               validate(validators: isEqual, value: validPassword);
-
           expect(errorMsgs, [PASSWORDS_MUST_BE_THE_SAME_MSG]);
         },
       );
-
       test(
         'It should return [], if valConfirmation.isNotEmpty, and inputtedValue == testString, using Validators.genIsEqual(testString)',
         () {
           List<String? Function(String)> isEqual =
               Validators.genIsEqual(testString);
-
           List<String> errorMsgs =
               validate(validators: isEqual, value: testString);
-
           expect(errorMsgs, []);
         },
       );
     },
   );
-
   group(
     'LengthLimittingValidator',
     () {
@@ -519,57 +460,46 @@ void main() {
         () {
           List<Validator<String>> lengthNegativeLimiting =
               Validators.lengthLimitingValidator(-1);
-
           List<String> errorMsgs = validate(
             validators: lengthNegativeLimiting,
             value: testString,
           );
-
           expect(errorMsgs, []);
         },
       );
-
       test(
         'It should retun [] if val.length == length',
         () {
           List<Validator<String>> lengthLimiting4 =
               Validators.lengthLimitingValidator(4);
-
           List<String> errorMsgs = validate(
             validators: lengthLimiting4,
             value: testString,
           );
-
           expect(errorMsgs, []);
         },
       );
-
       test(
         "It should return '{validating} must be {length} characters long.' If length >0, val.length != length and validations != null",
         () {
           List<Validator<String>> lengthLimiting4 =
               Validators.lengthLimitingValidator(4, validating: 'Test');
-
           List<String> errorMsgs = validate(
             validators: lengthLimiting4,
             value: atLeast1Letter,
           );
-
           expect(errorMsgs, ['Test must be 4 characters long.']);
         },
       );
-
       test(
         "It should return 'It must be {length} characters long.' If length >0, val.length != length and validations != null",
         () {
           List<Validator<String>> lengthLimiting4 =
               Validators.lengthLimitingValidator(4);
-
           List<String> errorMsgs = validate(
             validators: lengthLimiting4,
             value: atLeast1Letter,
           );
-
           expect(errorMsgs, ['It must be 4 characters long.']);
         },
       );

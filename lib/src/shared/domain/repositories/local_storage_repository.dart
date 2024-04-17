@@ -1,6 +1,6 @@
 import 'package:convenience_types/types/maybe.dart';
 import 'package:convenience_types/types/result.dart';
-import 'package:flutter_base/src/shared/data/miscelaneous/storage_keys.dart';
+import 'package:poc_agora_io/src/shared/data/miscelaneous/storage_keys.dart';
 
 abstract class LocalStorageRepository {
   Future<Result> write(
