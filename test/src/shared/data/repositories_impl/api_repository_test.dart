@@ -125,7 +125,7 @@ void main() {
       test(
         'state should be Unauthenticated initialy',
         () {
-          expect(apiRepository.debugState, const Unauthenticated());
+          expect(apiRepository.state, const Unauthenticated());
         },
       );
     },

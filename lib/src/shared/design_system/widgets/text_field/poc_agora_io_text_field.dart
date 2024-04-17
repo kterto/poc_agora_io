@@ -27,7 +27,7 @@ class PocAgoraIoTextField extends StatefulWidget {
   final int maxLines;
   final TextCapitalization textCapitalization;
   const PocAgoraIoTextField({
-    Key? key,
+    super.key,
     this.hintText = '',
     this.controller,
     this.formatters = const <TextInputFormatter>[],
@@ -44,8 +44,9 @@ class PocAgoraIoTextField extends StatefulWidget {
     this.color = AppTextFieldColor.regular,
     this.textCapitalization = TextCapitalization.none,
     this.maxLines = 1,
-  }) : super(key: key);
+  });
   @override
+  // ignore: library_private_types_in_public_api
   _PocAgoraIoTextFieldState createState() => _PocAgoraIoTextFieldState();
 }
 

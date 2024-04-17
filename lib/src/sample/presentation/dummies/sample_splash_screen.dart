@@ -7,7 +7,7 @@ const Duration _FADE_DURATION = Duration(milliseconds: 1200);
 const Duration _SLIDE_DURATION = Duration(milliseconds: 600);
 
 class SampleSplashScreen extends StatefulWidget {
-  const SampleSplashScreen({Key? key}) : super(key: key);
+  const SampleSplashScreen({super.key});
   @override
   State<SampleSplashScreen> createState() => _SampleSplashScreenState();
 }
@@ -45,6 +45,7 @@ class _SampleSplashScreenState extends State<SampleSplashScreen>
     );
     try {
       fadeController.forward();
+      // ignore: empty_catches
     } catch (e) {}
     Future.delayed(_FADE_DURATION - _SLIDE_DURATION).then(
       (value) {
@@ -58,6 +59,7 @@ class _SampleSplashScreenState extends State<SampleSplashScreen>
               );
             },
           );
+          // ignore: empty_catches
         } catch (e) {}
       },
     );

@@ -8,7 +8,7 @@ const double _BTN_HEIGHT = SpacingTokens.yotta;
 
 class PocAgoraIoButton extends StatelessWidget {
   const PocAgoraIoButton({
-    Key? key,
+    super.key,
     this.onPressed,
     this.color = AppButtonColor.primary,
     this.icon,
@@ -16,7 +16,7 @@ class PocAgoraIoButton extends StatelessWidget {
     this.fillWidth = true,
     this.isLoading = false,
     this.text,
-  }) : super(key: key);
+  });
   final String? text;
   final void Function()? onPressed;
   final AppButtonColor color;

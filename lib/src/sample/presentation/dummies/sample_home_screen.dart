@@ -8,7 +8,7 @@ import 'package:poc_agora_io/src/shared/design_system/widgets/buttons/poc_agora_
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SampleHomeScreen extends ConsumerWidget {
-  const SampleHomeScreen({Key? key}) : super(key: key);
+  const SampleHomeScreen({super.key});
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(

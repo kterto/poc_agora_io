@@ -45,8 +45,8 @@ class _FluterBaseTextControllerHook
     this.equalsTo,
     this.onChanged,
     this.validators = const [],
-    List<Object?>? keys,
-  }) : super(keys: keys);
+    super.keys,
+  });
   @override
   HookState<PocAgoraIoTextFieldController, _FluterBaseTextControllerHook>
       createState() => _FluterBaseTextControllerHookState();

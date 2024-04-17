@@ -48,7 +48,7 @@ extension BuildContextX on BuildContext {
   }
 
   Future<bool> pop<T extends Object>([T? result]) async =>
-      AutoRouter.of(this).pop(result);
+      AutoRouter.of(this).maybePop(result);
 
   Future<T?> push<T extends Object>(PageRouteInfo<dynamic> route,
           {void Function(NavigationFailure)? onFailure}) =>

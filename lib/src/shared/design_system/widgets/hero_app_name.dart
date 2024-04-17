@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:poc_agora_io/src/shared/design_system/assets/poc_agora_io_images.dart';
 
 class HeroAppName extends StatefulWidget {
-  const HeroAppName({Key? key}) : super(key: key);
+  const HeroAppName({super.key});
   @override
+  // ignore: library_private_types_in_public_api
   _HeroAppNameState createState() => _HeroAppNameState();
 }
 

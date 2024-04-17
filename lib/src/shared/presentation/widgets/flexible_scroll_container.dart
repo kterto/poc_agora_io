@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 class FlexibleScrollContainer extends StatelessWidget {
   final Widget _child;
   const FlexibleScrollContainer({
-    Key? key,
+    super.key,
     required Widget child,
-  })  : _child = child,
-        super(key: key);
+  }) : _child = child;
 
   @override
   Widget build(BuildContext context) {

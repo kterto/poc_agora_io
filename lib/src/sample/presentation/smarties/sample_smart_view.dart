@@ -6,7 +6,7 @@ import 'package:poc_agora_io/src/sample/sample_providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SampleSmartView extends ConsumerStatefulWidget {
-  const SampleSmartView({Key? key}) : super(key: key);
+  const SampleSmartView({super.key});
   @override
   SampleSmartViewState createState() => SampleSmartViewState();
 }

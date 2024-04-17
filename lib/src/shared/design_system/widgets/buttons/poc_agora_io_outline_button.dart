@@ -9,12 +9,12 @@ const double _BTN_HEIGHT = SpacingTokens.yotta;
 class PocAgoraIoOutlineButton extends StatelessWidget {
   const PocAgoraIoOutlineButton(
     this.text, {
-    Key? key,
+    super.key,
     this.onPressed,
     this.color = AppButtonColor.outline,
     this.icon,
     this.isLoading = false,
-  }) : super(key: key);
+  });
   final String? text;
   final void Function()? onPressed;
   final AppButtonColor color;

@@ -5,8 +5,7 @@ class PocAgoraIoCircularProgressIndicator extends StatelessWidget {
   final double? size;
   final Alignment? alignment;
   const PocAgoraIoCircularProgressIndicator(
-      {Key? key, this.alignment, this.size})
-      : super(key: key);
+      {super.key, this.alignment, this.size});
   @override
   Widget build(BuildContext context) {
     return Container(

@@ -13,7 +13,7 @@ import 'package:poc_agora_io/src/shared/utils/validators.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class SampleLoginScreen extends ConsumerStatefulWidget {
-  const SampleLoginScreen({Key? key}) : super(key: key);
+  const SampleLoginScreen({super.key});
   @override
   SampleLoginScreenState createState() => SampleLoginScreenState();
 }
@@ -42,6 +42,7 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
     passwordController.dispose();
     try {
       passwordFocus.dispose();
+      // ignore: empty_catches
     } catch (e) {}
     super.dispose();
   }
