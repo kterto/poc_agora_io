@@ -22,7 +22,6 @@ class VideoCallRepositoryImpl implements VideoCallRepository {
     } on ParseException catch (e) {
       return Failure(EntityNotFitError(slug: e.toString()));
     } catch (e) {
-      print("[VideoCallRepositoryImpl][getConfig][exception]: $e");
       return Failure(ParseError(slug: e.toString()));
     }
   }

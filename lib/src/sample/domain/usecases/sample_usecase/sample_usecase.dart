@@ -62,7 +62,18 @@ class SampleUsecase extends StateNotifier<SampleState> {
     }
   }
 
-  void onClickOnVideoCall() {
-    state = state.copyWith(action: const GoToVideoCall());
+  void onClickOnVideoCall({
+    Maybe<String> channelName = const Nothing(),
+    Maybe<String> token = const Nothing(),
+  }) {
+    state = state.copyWith(
+        action: GoToVideoCall(
+      channelName: channelName,
+      token: token,
+    ));
+  }
+
+  void fallingBack() {
+    state = state.copyWith(action: const _Idle());
   }
 }

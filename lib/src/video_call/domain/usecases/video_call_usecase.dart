@@ -17,14 +17,14 @@ class VideoCallUsecase extends StateNotifier<VideoCallState> {
 
   final VideoCallRepository _videoCallRepository;
 
-  Future<void> setupAgoraEngine() async {
+  Future<void> setupAgoraEngine({
+    required Maybe<String> channelName,
+    required Maybe<String> token,
+  }) async {
     state = state.copyWith(agoraConfigRequestStatus: const Loading());
 
     Result<AgoraConfigModel> agoraConfigRes =
         await _videoCallRepository.getConfig();
-
-    print(
-        '[VideoCallUsecase][setupAgoraEngine][agoraConfigRes]: $agoraConfigRes');
 
     await [Permission.microphone, Permission.camera].request();
 
@@ -37,12 +37,16 @@ class VideoCallUsecase extends StateNotifier<VideoCallState> {
         state = state.copyWith(agoraConfigRequestStatus: Failed(error));
       },
       onSuccess: (data) async {
+        var updated = data.copyWith(
+          channelName: channelName.getOrElse(data.channelName),
+          rtcToken: token.getOrElse(data.rtcToken),
+        );
         state = state.copyWith(
-          agoraConfigRequestStatus: Succeeded(data),
-          appId: data.appId,
-          localUid: data.localUid,
-          channelName: data.channelName,
-          rtcToken: data.rtcToken,
+          agoraConfigRequestStatus: Succeeded(updated),
+          appId: updated.appId,
+          localUid: updated.localUid,
+          channelName: updated.channelName,
+          rtcToken: updated.rtcToken,
         );
 
         state.agoraEngine.when(
@@ -92,9 +96,6 @@ class VideoCallUsecase extends StateNotifier<VideoCallState> {
     eventArgs["elapsed"] = elapsed;
 
     state = state.copyWith(event: Just(JoinChannelSuccess(args: eventArgs)));
-    print('Joined channel');
-    print('connection: $connection');
-    print('elapsed: $elapsed');
   }
 
   void onUserJoined(RtcConnection connection, int remoteUid, int elapsed) {
@@ -107,11 +108,6 @@ class VideoCallUsecase extends StateNotifier<VideoCallState> {
       event: Just(UserJoined(args: eventArgs)),
       remoteUids: state.remoteUids.toList()..add(remoteUid),
     );
-
-    print('onUserJoined');
-    print('connection: $connection');
-    print('remoteUid: $remoteUid');
-    print('elapsed: $elapsed');
   }
 
   void onUserOffline(
@@ -147,6 +143,41 @@ class VideoCallUsecase extends StateNotifier<VideoCallState> {
           options: options,
           uid: state.localUid,
         );
+      },
+    );
+  }
+
+  Future<void> onMicPressed(bool muted) async {
+    await state.agoraEngine.whenOrNull(
+      just: (engine) async {
+        if (muted) {
+          await engine.enableAudio();
+        } else {
+          await engine.disableAudio();
+        }
+      },
+    );
+  }
+
+  Future<void> onCamPressed(bool muted) async {
+    await state.agoraEngine.whenOrNull(
+      just: (engine) async {
+        if (muted) {
+          await engine.enableVideo();
+        } else {
+          await engine.disableVideo();
+        }
+      },
+    );
+  }
+
+  Future<void> onEndCallPressed() async {
+    await state.agoraEngine.whenOrNull(
+      just: (engine) async {
+        await engine.leaveChannel();
+        await engine.release();
+
+        state = state.copyWith(action: const _PopFlow());
       },
     );
   }

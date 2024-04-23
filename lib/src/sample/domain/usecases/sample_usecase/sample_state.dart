@@ -28,5 +28,8 @@ class SampleFlow with _$SampleFlow {
 @freezed
 class SampleAction with _$SampleAction {
   const factory SampleAction.idle() = _Idle;
-  const factory SampleAction.goToVideoCall() = GoToVideoCall;
+  const factory SampleAction.goToVideoCall({
+    required Maybe<String> channelName,
+    required Maybe<String> token,
+  }) = GoToVideoCall;
 }

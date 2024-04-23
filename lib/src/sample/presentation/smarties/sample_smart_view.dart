@@ -43,7 +43,18 @@ class SampleSmartViewState extends ConsumerState<SampleSmartView> {
     if (next.action != previous?.action) {
       next.action.when(
         idle: () {},
-        goToVideoCall: () => context.push(const VideoCallSmartRouteWrapper()),
+        goToVideoCall: (channelName, token) {
+          context
+              .push(VideoCallSmartRouteWrapper(
+                channelName: channelName,
+                token: token,
+              ))
+              .then(
+                (_) => ref
+                    .read(SampleProviders.sampleUsecaseProvider.notifier)
+                    .fallingBack(),
+              );
+        },
       );
     }
   }

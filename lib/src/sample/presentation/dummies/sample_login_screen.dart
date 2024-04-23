@@ -1,3 +1,4 @@
+import 'package:convenience_types/convenience_types.dart';
 import 'package:flutter/material.dart';
 import 'package:poc_agora_io/src/sample/sample_providers.dart';
 import 'package:poc_agora_io/src/shared/design_system/themes/poc_agora_io_text_style.dart';
@@ -79,12 +80,12 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
                 TextSpan(
                   children: [
                     TextSpan(
-                      text: "Enter your ",
+                      text: "Enter the ",
                       style: PocAgoraIoTextStyle.bodyText1.style
                           .copyWith(color: ColorTokens.neutralMediumDark),
                     ),
                     TextSpan(
-                      text: "Email:",
+                      text: "Channel Name:",
                       style: PocAgoraIoTextStyle.bodyText1.weightBold.style
                           .copyWith(
                         color: ColorTokens.neutralDarkest,
@@ -95,7 +96,7 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
               ),
               PocAgoraIoTextField(
                 key: const Key("email_text_field"),
-                hintText: "Email",
+                hintText: "Channel Name",
                 controller: emailController,
                 keyboardType: TextInputType.emailAddress,
                 onSubmitted: (value) => passwordFocus.requestFocus(),
@@ -115,7 +116,7 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
                           .copyWith(color: ColorTokens.neutralMediumDark),
                     ),
                     TextSpan(
-                      text: "Password:",
+                      text: "Generated Token:",
                       style: PocAgoraIoTextStyle.bodyText1.weightBold.style
                           .copyWith(
                         color: ColorTokens.neutralDarkest,
@@ -126,7 +127,7 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
               ),
               PocAgoraIoTextField(
                 key: const Key("password_text_field"),
-                hintText: "Password",
+                hintText: "Token",
                 focusNode: passwordFocus,
                 controller: passwordController,
                 keyboardType: TextInputType.visiblePassword,
@@ -176,10 +177,9 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
   }
 
   void _onContinuePressed() {
-    emailController.showValidationState();
-    passwordController.showValidationState();
-    ref
-        .read(SampleProviders.sampleUsecaseProvider.notifier)
-        .onClickOnVideoCall();
+    ref.read(SampleProviders.sampleUsecaseProvider.notifier).onClickOnVideoCall(
+          channelName: Maybe.from(emailController.value.text),
+          token: Maybe.from(passwordController.value.text),
+        );
   }
 }

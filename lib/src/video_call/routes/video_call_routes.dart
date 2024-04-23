@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:convenience_types/types/maybe.dart';
 import 'package:flutter/widgets.dart';
 import 'package:poc_agora_io/src/router/app_router.gr.dart';
 import 'package:poc_agora_io/src/video_call/presentation/dummies/enter_video_call_screen.dart';
@@ -21,9 +22,20 @@ class EnterVideoCallScreenWrapper extends StatelessWidget {
 
 @RoutePage<Never>(name: 'VideoCallSmartRouteWrapper')
 class VideoCallSmartViewWrappper extends StatelessWidget {
-  const VideoCallSmartViewWrappper({super.key});
+  const VideoCallSmartViewWrappper({
+    super.key,
+    this.channelName = const Nothing(),
+    this.token = const Nothing(),
+  });
+
+  final Maybe<String> channelName;
+  final Maybe<String> token;
+
   @override
-  Widget build(BuildContext context) => const VideoCallSmartView();
+  Widget build(BuildContext context) => VideoCallSmartView(
+        channelName: channelName,
+        token: token,
+      );
 }
 
 class VideoCallRoutes {

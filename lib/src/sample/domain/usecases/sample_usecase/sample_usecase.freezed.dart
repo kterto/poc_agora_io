@@ -643,19 +643,22 @@ mixin _$SampleAction {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() goToVideoCall,
+    required TResult Function(Maybe<String> channelName, Maybe<String> token)
+        goToVideoCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? goToVideoCall,
+    TResult? Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? goToVideoCall,
+    TResult Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -736,7 +739,8 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() goToVideoCall,
+    required TResult Function(Maybe<String> channelName, Maybe<String> token)
+        goToVideoCall,
   }) {
     return idle();
   }
@@ -745,7 +749,8 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? goToVideoCall,
+    TResult? Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
   }) {
     return idle?.call();
   }
@@ -754,7 +759,8 @@ class _$IdleImpl implements _Idle {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? goToVideoCall,
+    TResult Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
     required TResult orElse(),
   }) {
     if (idle != null) {
@@ -804,6 +810,11 @@ abstract class _$$GoToVideoCallImplCopyWith<$Res> {
   factory _$$GoToVideoCallImplCopyWith(
           _$GoToVideoCallImpl value, $Res Function(_$GoToVideoCallImpl) then) =
       __$$GoToVideoCallImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Maybe<String> channelName, Maybe<String> token});
+
+  $MaybeCopyWith<String, $Res> get channelName;
+  $MaybeCopyWith<String, $Res> get token;
 }
 
 /// @nodoc
@@ -813,54 +824,106 @@ class __$$GoToVideoCallImplCopyWithImpl<$Res>
   __$$GoToVideoCallImplCopyWithImpl(
       _$GoToVideoCallImpl _value, $Res Function(_$GoToVideoCallImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? channelName = null,
+    Object? token = null,
+  }) {
+    return _then(_$GoToVideoCallImpl(
+      channelName: null == channelName
+          ? _value.channelName
+          : channelName // ignore: cast_nullable_to_non_nullable
+              as Maybe<String>,
+      token: null == token
+          ? _value.token
+          : token // ignore: cast_nullable_to_non_nullable
+              as Maybe<String>,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MaybeCopyWith<String, $Res> get channelName {
+    return $MaybeCopyWith<String, $Res>(_value.channelName, (value) {
+      return _then(_value.copyWith(channelName: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $MaybeCopyWith<String, $Res> get token {
+    return $MaybeCopyWith<String, $Res>(_value.token, (value) {
+      return _then(_value.copyWith(token: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$GoToVideoCallImpl implements GoToVideoCall {
-  const _$GoToVideoCallImpl();
+  const _$GoToVideoCallImpl({required this.channelName, required this.token});
+
+  @override
+  final Maybe<String> channelName;
+  @override
+  final Maybe<String> token;
 
   @override
   String toString() {
-    return 'SampleAction.goToVideoCall()';
+    return 'SampleAction.goToVideoCall(channelName: $channelName, token: $token)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$GoToVideoCallImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$GoToVideoCallImpl &&
+            (identical(other.channelName, channelName) ||
+                other.channelName == channelName) &&
+            (identical(other.token, token) || other.token == token));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, channelName, token);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$GoToVideoCallImplCopyWith<_$GoToVideoCallImpl> get copyWith =>
+      __$$GoToVideoCallImplCopyWithImpl<_$GoToVideoCallImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() idle,
-    required TResult Function() goToVideoCall,
+    required TResult Function(Maybe<String> channelName, Maybe<String> token)
+        goToVideoCall,
   }) {
-    return goToVideoCall();
+    return goToVideoCall(channelName, token);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? idle,
-    TResult? Function()? goToVideoCall,
+    TResult? Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
   }) {
-    return goToVideoCall?.call();
+    return goToVideoCall?.call(channelName, token);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? idle,
-    TResult Function()? goToVideoCall,
+    TResult Function(Maybe<String> channelName, Maybe<String> token)?
+        goToVideoCall,
     required TResult orElse(),
   }) {
     if (goToVideoCall != null) {
-      return goToVideoCall();
+      return goToVideoCall(channelName, token);
     }
     return orElse();
   }
@@ -898,5 +961,13 @@ class _$GoToVideoCallImpl implements GoToVideoCall {
 }
 
 abstract class GoToVideoCall implements SampleAction {
-  const factory GoToVideoCall() = _$GoToVideoCallImpl;
+  const factory GoToVideoCall(
+      {required final Maybe<String> channelName,
+      required final Maybe<String> token}) = _$GoToVideoCallImpl;
+
+  Maybe<String> get channelName;
+  Maybe<String> get token;
+  @JsonKey(ignore: true)
+  _$$GoToVideoCallImplCopyWith<_$GoToVideoCallImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
