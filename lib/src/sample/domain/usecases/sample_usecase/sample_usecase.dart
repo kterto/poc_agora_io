@@ -61,4 +61,8 @@ class SampleUsecase extends StateNotifier<SampleState> {
       );
     }
   }
+
+  void onClickOnVideoCall() {
+    state = state.copyWith(action: const GoToVideoCall());
+  }
 }

@@ -17,6 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$SampleState {
   SampleFlow get flow => throw _privateConstructorUsedError;
+  SampleAction get action => throw _privateConstructorUsedError;
   SignInForm get signInForm => throw _privateConstructorUsedError;
   RequestStatus<dynamic> get signInRequestStatus =>
       throw _privateConstructorUsedError;
@@ -34,10 +35,12 @@ abstract class $SampleStateCopyWith<$Res> {
   @useResult
   $Res call(
       {SampleFlow flow,
+      SampleAction action,
       SignInForm signInForm,
       RequestStatus<dynamic> signInRequestStatus});
 
   $SampleFlowCopyWith<$Res> get flow;
+  $SampleActionCopyWith<$Res> get action;
   $SignInFormCopyWith<$Res> get signInForm;
   $RequestStatusCopyWith<dynamic, $Res> get signInRequestStatus;
 }
@@ -56,6 +59,7 @@ class _$SampleStateCopyWithImpl<$Res, $Val extends SampleState>
   @override
   $Res call({
     Object? flow = null,
+    Object? action = null,
     Object? signInForm = null,
     Object? signInRequestStatus = null,
   }) {
@@ -64,6 +68,10 @@ class _$SampleStateCopyWithImpl<$Res, $Val extends SampleState>
           ? _value.flow
           : flow // ignore: cast_nullable_to_non_nullable
               as SampleFlow,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as SampleAction,
       signInForm: null == signInForm
           ? _value.signInForm
           : signInForm // ignore: cast_nullable_to_non_nullable
@@ -80,6 +88,14 @@ class _$SampleStateCopyWithImpl<$Res, $Val extends SampleState>
   $SampleFlowCopyWith<$Res> get flow {
     return $SampleFlowCopyWith<$Res>(_value.flow, (value) {
       return _then(_value.copyWith(flow: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SampleActionCopyWith<$Res> get action {
+    return $SampleActionCopyWith<$Res>(_value.action, (value) {
+      return _then(_value.copyWith(action: value) as $Val);
     });
   }
 
@@ -111,11 +127,14 @@ abstract class _$$SampleStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {SampleFlow flow,
+      SampleAction action,
       SignInForm signInForm,
       RequestStatus<dynamic> signInRequestStatus});
 
   @override
   $SampleFlowCopyWith<$Res> get flow;
+  @override
+  $SampleActionCopyWith<$Res> get action;
   @override
   $SignInFormCopyWith<$Res> get signInForm;
   @override
@@ -134,6 +153,7 @@ class __$$SampleStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? flow = null,
+    Object? action = null,
     Object? signInForm = null,
     Object? signInRequestStatus = null,
   }) {
@@ -142,6 +162,10 @@ class __$$SampleStateImplCopyWithImpl<$Res>
           ? _value.flow
           : flow // ignore: cast_nullable_to_non_nullable
               as SampleFlow,
+      action: null == action
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as SampleAction,
       signInForm: null == signInForm
           ? _value.signInForm
           : signInForm // ignore: cast_nullable_to_non_nullable
@@ -159,6 +183,7 @@ class __$$SampleStateImplCopyWithImpl<$Res>
 class _$SampleStateImpl extends _SampleState {
   const _$SampleStateImpl(
       {required this.flow,
+      required this.action,
       required this.signInForm,
       required this.signInRequestStatus})
       : super._();
@@ -166,13 +191,15 @@ class _$SampleStateImpl extends _SampleState {
   @override
   final SampleFlow flow;
   @override
+  final SampleAction action;
+  @override
   final SignInForm signInForm;
   @override
   final RequestStatus<dynamic> signInRequestStatus;
 
   @override
   String toString() {
-    return 'SampleState(flow: $flow, signInForm: $signInForm, signInRequestStatus: $signInRequestStatus)';
+    return 'SampleState(flow: $flow, action: $action, signInForm: $signInForm, signInRequestStatus: $signInRequestStatus)';
   }
 
   @override
@@ -181,6 +208,7 @@ class _$SampleStateImpl extends _SampleState {
         (other.runtimeType == runtimeType &&
             other is _$SampleStateImpl &&
             (identical(other.flow, flow) || other.flow == flow) &&
+            (identical(other.action, action) || other.action == action) &&
             (identical(other.signInForm, signInForm) ||
                 other.signInForm == signInForm) &&
             (identical(other.signInRequestStatus, signInRequestStatus) ||
@@ -189,7 +217,7 @@ class _$SampleStateImpl extends _SampleState {
 
   @override
   int get hashCode =>
-      Object.hash(runtimeType, flow, signInForm, signInRequestStatus);
+      Object.hash(runtimeType, flow, action, signInForm, signInRequestStatus);
 
   @JsonKey(ignore: true)
   @override
@@ -201,6 +229,7 @@ class _$SampleStateImpl extends _SampleState {
 abstract class _SampleState extends SampleState {
   const factory _SampleState(
           {required final SampleFlow flow,
+          required final SampleAction action,
           required final SignInForm signInForm,
           required final RequestStatus<dynamic> signInRequestStatus}) =
       _$SampleStateImpl;
@@ -208,6 +237,8 @@ abstract class _SampleState extends SampleState {
 
   @override
   SampleFlow get flow;
+  @override
+  SampleAction get action;
   @override
   SignInForm get signInForm;
   @override
@@ -605,4 +636,267 @@ class _$HomeImpl implements Home {
 
 abstract class Home implements SampleFlow {
   const factory Home() = _$HomeImpl;
+}
+
+/// @nodoc
+mixin _$SampleAction {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() goToVideoCall,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? goToVideoCall,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? goToVideoCall,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(GoToVideoCall value) goToVideoCall,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
+    TResult? Function(GoToVideoCall value)? goToVideoCall,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(GoToVideoCall value)? goToVideoCall,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SampleActionCopyWith<$Res> {
+  factory $SampleActionCopyWith(
+          SampleAction value, $Res Function(SampleAction) then) =
+      _$SampleActionCopyWithImpl<$Res, SampleAction>;
+}
+
+/// @nodoc
+class _$SampleActionCopyWithImpl<$Res, $Val extends SampleAction>
+    implements $SampleActionCopyWith<$Res> {
+  _$SampleActionCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$IdleImplCopyWith<$Res> {
+  factory _$$IdleImplCopyWith(
+          _$IdleImpl value, $Res Function(_$IdleImpl) then) =
+      __$$IdleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$IdleImplCopyWithImpl<$Res>
+    extends _$SampleActionCopyWithImpl<$Res, _$IdleImpl>
+    implements _$$IdleImplCopyWith<$Res> {
+  __$$IdleImplCopyWithImpl(_$IdleImpl _value, $Res Function(_$IdleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$IdleImpl implements _Idle {
+  const _$IdleImpl();
+
+  @override
+  String toString() {
+    return 'SampleAction.idle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$IdleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() goToVideoCall,
+  }) {
+    return idle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? goToVideoCall,
+  }) {
+    return idle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? goToVideoCall,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(GoToVideoCall value) goToVideoCall,
+  }) {
+    return idle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
+    TResult? Function(GoToVideoCall value)? goToVideoCall,
+  }) {
+    return idle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(GoToVideoCall value)? goToVideoCall,
+    required TResult orElse(),
+  }) {
+    if (idle != null) {
+      return idle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Idle implements SampleAction {
+  const factory _Idle() = _$IdleImpl;
+}
+
+/// @nodoc
+abstract class _$$GoToVideoCallImplCopyWith<$Res> {
+  factory _$$GoToVideoCallImplCopyWith(
+          _$GoToVideoCallImpl value, $Res Function(_$GoToVideoCallImpl) then) =
+      __$$GoToVideoCallImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoToVideoCallImplCopyWithImpl<$Res>
+    extends _$SampleActionCopyWithImpl<$Res, _$GoToVideoCallImpl>
+    implements _$$GoToVideoCallImplCopyWith<$Res> {
+  __$$GoToVideoCallImplCopyWithImpl(
+      _$GoToVideoCallImpl _value, $Res Function(_$GoToVideoCallImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoToVideoCallImpl implements GoToVideoCall {
+  const _$GoToVideoCallImpl();
+
+  @override
+  String toString() {
+    return 'SampleAction.goToVideoCall()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$GoToVideoCallImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() idle,
+    required TResult Function() goToVideoCall,
+  }) {
+    return goToVideoCall();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? idle,
+    TResult? Function()? goToVideoCall,
+  }) {
+    return goToVideoCall?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? idle,
+    TResult Function()? goToVideoCall,
+    required TResult orElse(),
+  }) {
+    if (goToVideoCall != null) {
+      return goToVideoCall();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Idle value) idle,
+    required TResult Function(GoToVideoCall value) goToVideoCall,
+  }) {
+    return goToVideoCall(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Idle value)? idle,
+    TResult? Function(GoToVideoCall value)? goToVideoCall,
+  }) {
+    return goToVideoCall?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Idle value)? idle,
+    TResult Function(GoToVideoCall value)? goToVideoCall,
+    required TResult orElse(),
+  }) {
+    if (goToVideoCall != null) {
+      return goToVideoCall(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class GoToVideoCall implements SampleAction {
+  const factory GoToVideoCall() = _$GoToVideoCallImpl;
 }

@@ -180,6 +180,6 @@ class SampleLoginScreenState extends ConsumerState<SampleLoginScreen> {
     passwordController.showValidationState();
     ref
         .read(SampleProviders.sampleUsecaseProvider.notifier)
-        .onContinuePressed();
+        .onClickOnVideoCall();
   }
 }

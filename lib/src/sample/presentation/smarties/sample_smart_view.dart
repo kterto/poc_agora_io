@@ -4,6 +4,7 @@ import 'package:poc_agora_io/src/router/app_router.gr.dart';
 import 'package:poc_agora_io/src/sample/domain/usecases/sample_usecase/sample_usecase.dart';
 import 'package:poc_agora_io/src/sample/sample_providers.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:poc_agora_io/src/shared/utils/extensions/build_context_extensions.dart';
 
 class SampleSmartView extends ConsumerStatefulWidget {
   const SampleSmartView({super.key});
@@ -23,6 +24,8 @@ class SampleSmartViewState extends ConsumerState<SampleSmartView> {
   @override
   Widget build(BuildContext context) {
     SampleState state = ref.watch(SampleProviders.sampleUsecaseProvider);
+    ref.listen(SampleProviders.sampleUsecaseProvider, _listener);
+
     return AutoRouter.declarative(
       routes: (PendingRoutesHandler handler) => _routes(handler, state),
     );
@@ -34,5 +37,14 @@ class SampleSmartViewState extends ConsumerState<SampleSmartView> {
       login: () => const [SampleLoginRouteWrapper()],
       home: () => const [SampleHomeRouteWrapper()],
     );
+  }
+
+  void _listener(SampleState? previous, SampleState next) {
+    if (next.action != previous?.action) {
+      next.action.when(
+        idle: () {},
+        goToVideoCall: () => context.push(const VideoCallSmartRouteWrapper()),
+      );
+    }
   }
 }
